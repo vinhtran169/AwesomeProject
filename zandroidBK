@@ -37,6 +37,9 @@ class App extends Component {
     this.props.navigator.push({
       component: screenName,
       passProps: {
+        id: 'page_user_infos',
+        name: 'page_user_infos',
+        myVar: myVar,
       }
     })
   }
@@ -148,8 +151,22 @@ class App extends Component {
   }
 }
 
+class Two extends React.Component {
+  render() {
+    return (
+      <View style={{ marginTop: 100 }}>
+        <Text style={{ fontSize: 20 }}>Hello From second component</Text>
+        <Text>id: {this.props.id}</Text>
+        <Text>name: {this.props.name}</Text>
+        <Text>name: {this.props.myVar}</Text>
+      </View>
+    )
+  }
+}
+
 class AwesomeProject extends React.Component {
   render() {
+
     return (
       <Navigator
         style={{ flex: 1 }}
@@ -171,36 +188,13 @@ var NavigationBarRouteMapper = {
   LeftButton(route, navigator, index, navState) {
     if (index > 0) {
       return (
-        <View style={styles.container}>
-          <NavBar style={styles}>
-            <NavButton
-              onPress={() => {
-                if (index > 0) {
-                  navigator.pop();
-                }
-              }}>
-              <NavButtonText>
-                <Image source={require('./images/heart.png')} style={styles.ImageNav}></Image>
-              </NavButtonText>
-            </NavButton>
-            <NavTitle style={styles.title}>
-              {"BÁC SĨ GIA ĐÌNH"}
-            </NavTitle>
-            <NavButton>
-              <NavButtonText style={styles.buttonText}>
-                <Icon name="ios-menu" size={30} color='white' />
-              </NavButtonText>
-            </NavButton>
-          </NavBar>
-          <TouchableHighlight style={{ marginTop: 20 }}
-            onPress={() => {
-              if (index > 0) {
-                navigator.pop();
-              }
-            }}>
-            <Text>Back</Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight style={{ marginTop: 10 }} onPress={() => {
+          if (index > 0) {
+            navigator.pop();
+          }
+        }}>
+          <Text>Back</Text>
+        </TouchableHighlight>
       )
     } else {
       return null
