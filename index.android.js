@@ -1,7 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * chanbenh app
+ * pro react team 06-2017
  */
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, StatusBar, Image, Button, Alert, TouchableHighlight, Navigator } from 'react-native';
