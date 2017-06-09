@@ -4,6 +4,7 @@ var React = require('react-native');
 
 var {
   StyleSheet,
+  Navigator,
 } = React;
 
 module.exports = StyleSheet.create({
@@ -12,6 +13,7 @@ module.exports = StyleSheet.create({
     /*justifyContent: 'center',
     alignItems: 'center',*/
     backgroundColor: '#F5FCFF',
+    marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight,
   },
   statusBar: {
     backgroundColor: '#3343BD',
@@ -90,7 +92,13 @@ module.exports = StyleSheet.create({
     height: 100,
   },
   ImageNav: {
-    width: 70,
-    height: 70,
+    width: 150,
+    height: 150,
   },
+
+  // Style q_thinh
+  navbarContainer: {
+    backgroundColor: '#aaa',
+  },
+
 });

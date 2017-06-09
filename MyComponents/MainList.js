@@ -27,7 +27,8 @@ export default class MainList extends Component {
          <TouchableHighlight onPress={() => Alert.alert('', data.title)}>
             <View style={[{backgroundColor:data.color}, styles.listItem]}>
                <View style={styles.block_column1}>
-                  <Text>{data.url}</Text>
+                  {/*<Text>{data.url}</Text>*/}
+                  <Image source={require('./images/doctor.png')}/>
                </View>
 
                <View style={styles.block_column2}>
