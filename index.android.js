@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import NavBar, { NavGroup, NavButton, NavButtonText, NavTitle } from 'react-native-nav'
 
-import TraCuu from './MyComponents/Apple'
+import TraCuu from './MyComponents/TraCuu'
 import Chanbenh from './MyComponents/Orange'
 
 var styles = require('./styles/main');
@@ -35,6 +35,7 @@ class App extends Component {
         screenName = TraCuu
         break;
     }
+
     this.props.navigator.push({
       component: screenName,
       passProps: {
