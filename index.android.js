@@ -10,6 +10,7 @@ import NavBar, { NavGroup, NavButton, NavButtonText, NavTitle } from 'react-nati
 
 import TraCuu from './MyComponents/TraCuu'
 import Chanbenh from './MyComponents/Orange'
+import CustomNavigationBar from './MyComponents/CustomNavigationBar'
 
 var styles = require('./styles/main');
 
@@ -152,11 +153,9 @@ class App extends Component {
 
 class AwesomeProject extends React.Component {
   render() {
-    let height = Navigator.NavigationBar.Styles.General.TotalNavHeight
-
     var NavigationBarRouteMapper = {
       LeftButton: (route, navigator, index, navState) => {
-        if (index > 0) {
+        if (true) {
           return (
             <NavButton onPress={() => navigator.pop()}>
               <NavButtonText>
@@ -180,7 +179,7 @@ class AwesomeProject extends React.Component {
       Title: (route, navigator, index, navState) =>{
         return (
           <View>
-            <Text style={styles.title}>Screen</Text>
+            <Text style={styles.navTitle}>Screen</Text>
           </View>
         );
       }
@@ -196,11 +195,12 @@ class AwesomeProject extends React.Component {
           }
         }}
         navigationBar={
-          <Navigator.NavigationBar 
+          /*<Navigator.NavigationBar 
             style={styles.navbarContainer} 
             navigationStyles={Navigator.NavigationBar.StylesIOS}
             routeMapper={NavigationBarRouteMapper}
-          />
+          />*/
+          <CustomNavigationBar />
         } 
       />
     );

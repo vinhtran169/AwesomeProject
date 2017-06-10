@@ -10,10 +10,9 @@ var {
 module.exports = StyleSheet.create({
   container: {
     flex: 1,
-    /*justifyContent: 'center',
-    alignItems: 'center',*/
     backgroundColor: '#F5FCFF',
-    marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight,
+    marginTop: 50,
+    // marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight,
   },
   statusBar: {
     backgroundColor: '#3343BD',
@@ -92,13 +91,42 @@ module.exports = StyleSheet.create({
     height: 100,
   },
   ImageNav: {
-    width: 150,
-    height: 150,
+    width: 80,
+    height: 80,
   },
 
   // Style q_thinh
   navbarContainer: {
-    backgroundColor: '#aaa',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 50,
+    backgroundColor: '#ccc',
+    flexDirection: 'row',
   },
+
+  containerButtonLeft:{
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: 0,
+  },
+
+  imgButtonLeft: {
+    width: 40,
+    height: 40,
+  },
+
+  containerNavTitle: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  containerButtonRight:{
+    flex: 1,
+    justifyContent: 'center',
+    marginRight: 10,
+  }
 
 });
