@@ -4,7 +4,7 @@ import { View, Text, TouchableHighlight } from 'react-native';
 export default class Apple extends Component {
   render() {
     return(
-        <View style={{marginTop:100}}>
+        <View>
           <Text style={{fontSize:20}}>Hello From second component</Text>
         </View>
     )

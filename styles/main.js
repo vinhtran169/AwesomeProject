@@ -92,5 +92,14 @@ module.exports = StyleSheet.create({
   ImageNav: {
     width: 70,
     height: 70,
+  },  
+  text: {
+    marginLeft: 12,
+    fontSize: 16,
+  },
+  photo: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
   },
 });
