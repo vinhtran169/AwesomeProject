@@ -10,6 +10,7 @@ import NavBar, { NavGroup, NavButton, NavButtonText, NavTitle } from 'react-nati
 
 import TraCuu from './MyComponents/TraCuu'
 import Chanbenh from './MyComponents/Orange'
+import CustomNavigationBar from './MyComponents/CustomNavigationBar'
 
 var styles = require('./styles/main');
 
@@ -46,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <NavBar style={styles}>
+        {/*<NavBar style={styles}>
           <NavButton>
             <NavButtonText>
               <Image source={require('./images/heart.png')} style={styles.ImageNav}></Image>
@@ -60,7 +61,7 @@ class App extends Component {
               <Icon name="ios-menu" size={30} color='white' />
             </NavButtonText>
           </NavButton>
-        </NavBar>
+        </NavBar>*/}
 
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <TouchableHighlight style={styles.row1} onPress={() => this.gotoNext(1)} >
@@ -152,6 +153,38 @@ class App extends Component {
 
 class AwesomeProject extends React.Component {
   render() {
+    var NavigationBarRouteMapper = {
+      LeftButton: (route, navigator, index, navState) => {
+        if (true) {
+          return (
+            <NavButton onPress={() => navigator.pop()}>
+              <NavButtonText>
+                <Image source={require('./images/back-button.png')} style={styles.ImageNav}></Image>
+              </NavButtonText>
+            </NavButton>
+          );
+        }
+      },
+
+      RightButton: (route, navigator, index, navState) => {
+        return(
+          <NavButton>
+            <NavButtonText style={styles.buttonText}>
+              <Icon name="ios-menu" size={30} color='white' />
+            </NavButtonText>
+          </NavButton>
+        );
+      },
+
+      Title: (route, navigator, index, navState) =>{
+        return (
+          <View>
+            <Text style={styles.navTitle}>Screen</Text>
+          </View>
+        );
+      }
+    };
+
     return (
       <Navigator
         style={{ flex: 1 }}
@@ -162,59 +195,65 @@ class AwesomeProject extends React.Component {
           }
         }}
         navigationBar={
-          <Navigator.NavigationBar routeMapper={NavigationBarRouteMapper} />
-        } />
+          /*<Navigator.NavigationBar 
+            style={styles.navbarContainer} 
+            navigationStyles={Navigator.NavigationBar.StylesIOS}
+            routeMapper={NavigationBarRouteMapper}
+          />*/
+          <CustomNavigationBar />
+        } 
+      />
     );
   }
 }
 
 
-var NavigationBarRouteMapper = {
-  LeftButton(route, navigator, index, navState) {
-    if (index > 0) {
-      return (
-        <View style={styles.container}>
-          <NavBar style={styles}>
-            <NavButton
-              onPress={() => {
-                if (index > 0) {
-                  navigator.pop();
-                }
-              }}>
-              <NavButtonText>
-                <Image source={require('./images/heart.png')} style={styles.ImageNav}></Image>
-              </NavButtonText>
-            </NavButton>
-            <NavTitle style={styles.title}>
-              {"BÁC SĨ GIA ĐÌNH"}
-            </NavTitle>
-            <NavButton>
-              <NavButtonText style={styles.buttonText}>
-                <Icon name="ios-menu" size={30} color='white' />
-              </NavButtonText>
-            </NavButton>
-          </NavBar>
-          <TouchableHighlight style={{ marginTop: 20 }}
-            onPress={() => {
-              if (index > 0) {
-                navigator.pop();
-              }
-            }}>
-            <Text>Back</Text>
-          </TouchableHighlight>
-        </View>
-      )
-    } else {
-      return null
-    }
-  },
-  RightButton(route, navigator, index, navState) {
-    return null;
-  },
-  Title(route, navigator, index, navState) {
-    return null
-  }
-};
+// var NavigationBarRouteMapper = {
+//   LeftButton(route, navigator, index, navState) {
+//     if (index > 0) {
+//       return (
+//         <View style={styles.container}>
+//           <NavBar style={styles}>
+//             <NavButton
+//               onPress={() => {
+//                 if (index > 0) {
+//                   navigator.pop();
+//                 }
+//               }}>
+//               <NavButtonText>
+//                 <Image source={require('./images/heart.png')} style={styles.ImageNav}></Image>
+//               </NavButtonText>
+//             </NavButton>
+//             <NavTitle style={styles.title}>
+//               {"BÁC SĨ GIA ĐÌNH"}
+//             </NavTitle>
+//             <NavButton>
+//               <NavButtonText style={styles.buttonText}>
+//                 <Icon name="ios-menu" size={30} color='white' />
+//               </NavButtonText>
+//             </NavButton>
+//           </NavBar>
+//           <TouchableHighlight style={{ marginTop: 20 }}
+//             onPress={() => {
+//               if (index > 0) {
+//                 navigator.pop();
+//               }
+//             }}>
+//             <Text>Back</Text>
+//           </TouchableHighlight>
+//         </View>
+//       )
+//     } else {
+//       return null
+//     }
+//   },
+//   RightButton(route, navigator, index, navState) {
+//     return null;
+//   },
+//   Title(route, navigator, index, navState) {
+//     return null
+//   }
+// };
 
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
