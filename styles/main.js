@@ -91,8 +91,17 @@ module.exports = StyleSheet.create({
     height: 100,
   },
   ImageNav: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
+  },  
+  text: {
+    marginLeft: 12,
+    fontSize: 16,
+  },
+  photo: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
   },
 
   /*=============== Style q_thinh ==============*/
