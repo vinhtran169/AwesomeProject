@@ -14,7 +14,7 @@ export default class MainList extends Component {
                renderRow = {(row) => this._renderRow(row)}
             />
 
-            <TouchableOpacity style={styles.backButton} onPress={ () => this.goPage('Apple') }>
+            <TouchableOpacity style={styles.backButton} onPress={ () => this.props.navigator.pop() }>
                <Text>BACK</Text>
             </TouchableOpacity>
          </View>
@@ -44,8 +44,8 @@ export default class MainList extends Component {
       )
    }
 
-   goPage(page){
-     this.props.navigator.push({ screen: page });
-   }
+  gotoPage(componentName, screenName) {
+    this.props.navigator.push({ component: componentName, name: screenName });
+  }
 
 }

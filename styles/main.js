@@ -104,21 +104,21 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
   },
 
-  // Style q_thinh
+  /*=============== Style q_thinh ==============*/
+  //Navigator.NavigationBar
   navbarContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 50,
+    height: 70,
     backgroundColor: '#ccc',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -20,
   },
 
   containerButtonLeft:{
-    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 0,
+    marginTop: 5,
   },
 
   imgButtonLeft: {
@@ -126,16 +126,19 @@ module.exports = StyleSheet.create({
     height: 40,
   },
 
-  containerNavTitle: {
-    flex: 3,
+  containerButtonRight:{
     justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
+    marginRight: 10,
+    marginTop: 5,
   },
 
-  containerButtonRight:{
-    flex: 1,
-    justifyContent: 'center',
-    marginRight: 10,
-  }
+  navTitle: {
+    position: 'absolute',
+    top: 15,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
 
 });
