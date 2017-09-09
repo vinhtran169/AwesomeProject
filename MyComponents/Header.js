@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C1C1C1',
   },
   input: {
-    height: 30,
+    height: 40,
     flex: 1,
     paddingHorizontal: 8,
     fontSize: 15,
@@ -23,7 +23,7 @@ const Header = (props) => (
   <View style={styles.container}>
     <TextInput
       style={styles.input}
-      placeholder="Search..."
+      placeholder="Tìm kiếm..."
       onChangeText={(text) => console.log('searching for ', text)}
     />
   </View>
