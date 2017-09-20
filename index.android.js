@@ -20,7 +20,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     // height of advertising banner
-    this.state = { footHeight: 0 };
+    this.state = { footHeight: 50 };
   }
 
   // Pop/Push navigator
@@ -113,7 +113,7 @@ class App extends Component {
         <View style={{ flexDirection: 'row', height: this.state.footHeight }}>
           <TouchableHighlight style={styles.row5}
             onPress={() => this._navigate()}>
-            <Image source={require('./images/advertise.png')}></Image>
+            <Image source={require('./images/ad.png')}></Image>
           </TouchableHighlight>
         </View>
       </View>

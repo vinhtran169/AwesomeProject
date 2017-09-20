@@ -108,10 +108,11 @@ module.exports = StyleSheet.create({
   //Navigator.NavigationBar
   navbarContainer: {
     height: 70,
-    backgroundColor: '#ccc',
+    backgroundColor: '#8C4648',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -20,
+    
   },
 
   containerButtonLeft:{
@@ -139,6 +140,16 @@ module.exports = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    color: 'white',
+  },
+
+  autocompleteContainer: {
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 1
   },
 
 });
