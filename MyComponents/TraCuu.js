@@ -118,4 +118,8 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
   },
-});
+})
+
+  }
+}
+  
