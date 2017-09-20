@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, ListView, Text, View } from 'react-native';
+import { View, Alert, Text, TouchableHighlight, ListView, StyleSheet, AppRegistry } from 'react-native';
 
 import Row from './Row'
 import Header from './Header'
@@ -76,15 +76,6 @@ export default class TraCuu extends Component {
     }
 
     return { dataBlob, sectionIds, rowIds };
-var styles = require('../styles/main');
-
-export default class Apple extends Component {
-  render() {
-    return(
-        <View style={styles.container}>
-          <Text style={{fontSize:20}}>Hello From second component</Text>
-        </View>
-    )
   }
 
   gotoPage(componentName, screenName) {
@@ -120,6 +111,6 @@ const styles = StyleSheet.create({
   },
 })
 
-  }
-}
+  
+
   
