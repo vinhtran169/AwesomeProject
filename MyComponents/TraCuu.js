@@ -168,8 +168,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-  
-
-  
->>>>>>> e9b119bfa3f5cbf25b607c88ffca6a879b98c71c
