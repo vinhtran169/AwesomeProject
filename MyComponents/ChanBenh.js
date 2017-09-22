@@ -1,7 +1,16 @@
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, ListView, Text, View, TextInput, Button, TouchableHighlight, Alert} from 'react-native';
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight, Alert } from 'react-native';
 
-import TraCuu from './TraCuu';
+import Row from './Row'
+import Header from './Header'
+import SectionHeader from './SectionHeader'
+import Footer from './Footer'
+import demoData from './../data'
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import TokenAutocomplete from 'react-token-autocomplete';
+import TagInput from 'react-native-tag-input';
+import AutoTags from 'react-native-tag-autocomplete';
 
 var styles = require('../styles/main');
 var SQLite = require('react-native-sqlite-storage');
@@ -9,60 +18,148 @@ var SQLite = require('react-native-sqlite-storage');
 var db = null;
 
 export default class ChanBenh extends Component {
-  render() {
-    return(
-      <View style={styles.container}>
-        <Text>TEST SQLite ============================</Text>
-        <TouchableHighlight onPress={() => this.testSQLite()} >
-          <Text>CLICK</Text>
-        </TouchableHighlight>
-      </View>
-    )
-  }
-
   constructor(props) {
-    super(props);
-    db = SQLite.openDatabase({name : 'MyDB.db', createFromLocation : '~ReactDB.db'}, this.successCB, this.errorCB);
-    // db = SQLite.openDatabase({name : 'test02.db', createFromLocation : '~ReactDB.db', location: 'Library'}, this.successCB, this.errorCB);
+    super(props)
+
+    const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId];
+    const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`];
+
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+      getSectionData,
+      getRowData,
+    });
+
+    const { dataBlob, sectionIds, rowIds } = this.formatData(demoData);
+
+    this.state = {
+      tags: ["vinh"],
+      suggestions : [ {name:'Mickey Mouse'},{name:'Vinh'}, {name:'Mickey Halu'},],
+      tagsSelected : [],
+      dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)
+    }
+
+    
   }
 
-  testSQLite(){
-    // SQLite.deleteDatabase({name : 'MyDB.db'}, this.successCB, this.errorCB);
-    db.transaction((tx) => {
-      var sql = 'SELECT * FROM DS_BENH';
-      var params = [];
+  handleDelete = index => {
+    let tagsSelected = this.state.tagsSelected;
+    tagsSelected.splice(index, 1);
+    this.setState({ tagsSelected });
+ }
+ 
+ handleAddition = suggestion => {  
+  if (this.state.tagsSelected.indexOf(suggestion) === -1) {
+    // element doesn't exist in array
+    //alert("add OK");
+    this.setState({ tagsSelected: this.state.tagsSelected.concat([suggestion]) });
+  }
+    
+ }
 
-      // sql = 'CREATE TABLE IF NOT EXISTS Users2(id INTEGER PRIMARY KEY NOT NULL, name VARCHAR(30))';
-      // sql = 'INSERT INTO DS_BENH (name, description) VALUES(?,?)';
-      // params = ['test insert', 'test insert description'];
-      // tx.executeSql(sql, params, (tx, results) => {
-      //   console.log('SUCCESS SQL');
-      // }, (error) => {
-      //   console.log(error.message);
-      // });
+  onChangeTags = (tags) => {
+    this.setState({
+      tags,
+    });
+  };
 
-      tx.executeSql(sql, params, (tx, results) => {
-        var len = results.rows.length;
-        for (let i = 0; i < len; i++) {
-          console.log('---------------------------------------------');
-          let row = results.rows.item(i);
-          console.log(`Name: ${row.name}, Des: ${row.description}`);
-        }
-      }, (error) => {
-        console.log(error.message);
-      });
+  
+    render() {
+      const inputProps = {
+        keyboardType: 'default',
+        placeholder: 'email',
+        autoFocus: true,
+      };
+
+    return (
+      <View style={styles.container}>
+        <View style={{ flex: 1, flexDirection: 'row', }}>
+              <View style={{ flex: 0.25, justifyContent: 'flex-start', flexDirection: 'column', marginLeft: 5, marginTop:5 }} >
+                <EvilIcons name="search" size={40} color='red' />  
+              </View>
+              <View style={{ flex: 2, justifyContent: 'flex-start', flexDirection: 'column' }} >
+                <View style={styles.autocompleteContainer}>
+                  <AutoTags                          
+                          suggestions={this.state.suggestions}
+                          tagsSelected={this.state.tagsSelected}
+                          handleAddition={this.handleAddition}
+                          handleDelete={this.handleDelete} 
+                          placeholder="thêm triệu chứng..." />              
+              </View>
+            </View>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end',}}>
+          <View style={{ flex: 1, flexDirection: 'row', }}>
+            <View style={{ flex: 2, justifyContent: 'flex-end', flexDirection: 'column' }} >
+              {/* <button value="Chẩn đoán" Text="Chẩn đoán"/> */}
+              {/* <TouchableHighlight onPress={() => this.chanBenh()} ></TouchableHighlight> */}
+              <Button
+                  onPress={() => this.chanBenh()}
+                  title={"Chẩn đoán"}
+                  style={styles.buttonStyle}>Chẩn đoán</Button>
+            </View>
+           
+          </View>
+      </View>
+       
+      </View>
+    );
+  }
+
+  chanBenh() {
+    this.state.tagsSelected.forEach(function(element) {
+      alert(element.name);
     });
   }
 
-  errorCB() {
-    Alert.alert('MESSAGE', 'ERROR CB');
-  }
-  
-  successCB() {
-    Alert.alert('MESSAGE', 'SUCCESS CB');
+  formatData(data) {
+    // We're sorting by alphabetically so we need the alphabet
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+    // Need somewhere to store our data
+    const dataBlob = {};
+    const sectionIds = [];
+    const rowIds = [];
+
+    // Each section is going to represent a letter in the alphabet so we loop over the alphabet
+    for (let sectionId = 0; sectionId < alphabet.length; sectionId++) {
+      // Get the character we're currently looking for
+      const currentChar = alphabet[sectionId];
+
+      // Get users whose first name starts with the current letter
+      const users = data.filter((user) => user.name.first.toUpperCase().indexOf(currentChar) === 0);
+
+      // If there are any users who have a first name starting with the current letter then we'll
+      // add a new section otherwise we just skip over it
+      if (users.length > 0) {
+        // Add a section id to our array so the listview knows that we've got a new section
+        sectionIds.push(sectionId);
+
+        // Store any data we would want to display in the section header. In our case we want to show
+        // the current character
+        dataBlob[sectionId] = { character: currentChar };
+
+        // Setup a new array that we can store the row ids for this section
+        rowIds.push([]);
+
+        // Loop over the valid users for this section
+        for (let i = 0; i < users.length; i++) {
+          // Create a unique row id for the data blob that the listview can use for reference
+          const rowId = `${sectionId}:${i}`;
+
+          // Push the row id to the row ids array. This is what listview will reference to pull
+          // data from our data blob
+          rowIds[rowIds.length - 1].push(rowId);
+
+          // Store the data we care about for this row
+          dataBlob[rowId] = users[i];
+        }
+      }
+    }
+
+    return { dataBlob, sectionIds, rowIds };
   }
 
-  gotoPage(componentName, screenName) {
-    this.props.navigator.push({ component: componentName, name: screenName });
-  }
+
 }

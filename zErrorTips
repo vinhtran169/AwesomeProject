@@ -8,3 +8,9 @@ https://github.com/spencexyz/ListViewSample/blob/master/components/Row.js
 Guide https://medium.com/differential/react-native-basics-how-to-use-the-listview-component-a0ec44cf1fe8
 
 
+I got a "Unable to download JS bundle" error on the device when I tried to run it on a KitKat device
+I solved it by building the bundle file using the command
+
+curl "http://localhost:8081/index.android.bundle?platform=android" -o "android/app/src/main/assets/index.android.bundle"
+
+followed by react-native run-android
