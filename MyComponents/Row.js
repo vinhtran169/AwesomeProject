@@ -44,11 +44,13 @@ const Row = (props) => (
       padding: 10, margin: 5,
       color: '#333', width: 40, height: 40, textAlign: 'center',
     }}>
-      {`${props.name.first.charAt(0).toUpperCase()}`}
+      {/* {`${props.name.first.charAt(0).toUpperCase()}`} */}
+      {`${props.NAME.charAt(0).toUpperCase()}`}
     </Text>
     {/*<Image source={props.picture.large} style={styles.photo} />*/}
     <Text style={styles.text}>
-      {`${props.name.first} ${props.name.last}`}
+      {/* {`${props.name.first} ${props.name.last}`} */}
+      {`${props.NAME}`}
     </Text>
   </View>
 );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, ListView, Text, View, TextInput, Button} from 'react-native';
+import { AppRegistry, StyleSheet, ListView, Text, View, TextInput, Button, TouchableHighlight, Alert} from 'react-native';
+import React, { Component, PropTypes } from 'react';
 
 import Row from './Row'
 import Header from './Header'
@@ -14,6 +15,9 @@ import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'rea
 import ChanBenhKetQua from '../MyComponents/ChanBenhKetQua'
 
 var styles = require('../styles/main');
+var SQLite = require('react-native-sqlite-storage');
+
+var db = null;
 
 export default class ChanBenh extends Component {
   constructor(props) {
