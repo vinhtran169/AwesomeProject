@@ -9,8 +9,10 @@
   "dependencies": {
     "@shoutem/ui": "^0.13.0",
     "navbar-native": "^1.6.1",
+    "rc-progress": "^2.2.2",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
+    "react-native-button-component": "^0.1.25",
     "react-native-drawer": "^2.5.0",
     "react-native-nav": "^1.2.0",
     "react-native-navigation-bar": "^0.2.1",

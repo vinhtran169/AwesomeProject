@@ -78,6 +78,30 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
+  childTitleTextBlue: {
+    fontSize: 15,
+    color: '#419df4',
+    fontWeight: 'bold',
+    marginTop: 2,
+    marginLeft:5, 
+  },
+  childTitleTextRedRight: {
+    fontSize: 12,
+    color: 'red',   
+    marginTop: 5,
+    marginRight:2, 
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    
+  },
+  childTitleButtonRedRight: {
+    fontSize: 12,
+    color: 'red',   
+    marginTop: 2,
+    marginRight:2, 
+    backgroundColor: 'white'
+  },
   ImageSmall: {
     width: 70,
     height: 68,
@@ -102,6 +126,20 @@ module.exports = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 20,
+  },
+  rowText: {
+    marginRight: 20,
+  },
+  row: {
+    flexDirection: "row",
+  },
+  center: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  barText: {
+    backgroundColor: "transparent",
+    color: "#FFF",
   },
 
   /*=============== Style q_thinh ==============*/
@@ -149,7 +187,7 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
-    zIndex: 1
+    zIndex: 1,
   },
 
 });
