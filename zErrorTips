@@ -14,3 +14,9 @@ I solved it by building the bundle file using the command
 curl "http://localhost:8081/index.android.bundle?platform=android" -o "android/app/src/main/assets/index.android.bundle"
 
 followed by react-native run-android
+
+---
+npm install react-native-animated-bar
+
+
+npm start --reset-cache
