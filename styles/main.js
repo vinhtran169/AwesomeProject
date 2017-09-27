@@ -190,4 +190,64 @@ module.exports = StyleSheet.create({
     zIndex: 1,
   },
 
+  containerListView: {
+    flex: 1,
+    marginTop: 50,
+    backgroundColor: '#fff',
+  },
+
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  },
+
+  containerSearchBar: {
+    flex: 1,
+    padding: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#C1C1C1',
+  },
+
+  input: {
+    height: 40,
+    flex: 1,
+    paddingHorizontal: 8,
+    fontSize: 15,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 2,
+  },
+
+  circleProgress:{
+    alignItems: 'center',
+  },
+
+  containerProgress: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+
+  containerRow: {
+    flex: 1,
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  content: {
+    marginLeft: 12,
+    fontSize: 16,
+  },
+
+  letter: {
+    padding: 10, 
+    margin: 5,
+    color: '#333', 
+    width: 40, 
+    height: 40, 
+    textAlign: 'center',
+  }
+
 });

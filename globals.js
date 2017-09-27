@@ -17,6 +17,10 @@ class Globals{
     this.db.close();
   }
 
+  static removeDB(){
+    SQLite.deleteDatabase({name: this.dbName}, () => {console.log('REMOVE DB')}, (err) => {console.log(err.message)});
+  }
+
 }
 
 module.exports = Globals;

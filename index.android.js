@@ -9,6 +9,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import NavBar, { NavGroup, NavButton, NavButtonText, NavTitle } from 'react-native-nav';
 import Drawer from 'react-native-drawer';
 
+import Globals from './globals';
 import TraCuu from './MyComponents/TraCuu'
 import Chanbenh from './MyComponents/ChanBenh'
 
@@ -21,6 +22,9 @@ class App extends Component {
     super(props);
     // height of advertising banner
     this.state = { footHeight: 50 };
+
+    // Globals.removeDB();
+    Globals.openDB();
   }
 
   // Pop/Push navigator
