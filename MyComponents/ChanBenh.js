@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, ListView, Text, View, TextInput, Button, TouchableHighlight, Alert} from 'react-native';
 import React, { Component, PropTypes } from 'react';
+import { AppRegistry, StyleSheet, ListView, Text, View, TextInput, Button, TouchableHighlight, Alert} from 'react-native';
 
 import Row from './Row'
 import Header from './Header'
@@ -8,14 +7,11 @@ import SectionHeader from './SectionHeader'
 import Footer from './Footer'
 import demoData from './../data'
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import TokenAutocomplete from 'react-token-autocomplete';
-import TagInput from 'react-native-tag-input';
-import AutoTags from 'react-native-tag-autocomplete';
+// import TokenAutocomplete from 'react-token-autocomplete';
+// import TagInput from 'react-native-tag-input';
+// import AutoTags from 'react-native-tag-autocomplete';
 
 var styles = require('../styles/main');
-var SQLite = require('react-native-sqlite-storage');
-
-var db = null;
 
 export default class ChanBenh extends Component {
   constructor(props) {
@@ -80,12 +76,12 @@ export default class ChanBenh extends Component {
               </View>
               <View style={{ flex: 2, justifyContent: 'flex-start', flexDirection: 'column' }} >
                 <View style={styles.autocompleteContainer}>
-                  <AutoTags                          
+                  {/* <AutoTags                          
                           suggestions={this.state.suggestions}
                           tagsSelected={this.state.tagsSelected}
                           handleAddition={this.handleAddition}
                           handleDelete={this.handleDelete} 
-                          placeholder="thêm triệu chứng..." />              
+                          placeholder="thêm triệu chứng..." />               */}
               </View>
             </View>
         </View>
