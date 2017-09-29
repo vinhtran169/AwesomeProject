@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, ListView, Text, View, TextInput, Button} from 'react-native';
 import AnimatedBar from "react-native-animated-bar";
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
+import ChiTietBenh from './ChiTietBenh';
 
 var styles = require('../styles/main');
 
@@ -14,7 +15,16 @@ export default class ChanBenhKetQua extends Component {
       progress3: 0.2,
     };
 
-    
+    // Go Screen
+    gotoPage(componentName, screenName, dataSend) {
+      this.props.navigator.push({
+        component: componentName, 
+        name: screenName,
+        props: {
+          dataSend: dataSend
+        }
+      });
+    }
 
     render() {
       const inputProps = {
@@ -80,13 +90,13 @@ export default class ChanBenhKetQua extends Component {
             <View style={{ flex: 0.5}}></View>
             <View style={{ flex: 1, flexDirection: 'column', alignItems:'center', width:50, marginTop:5 }} >
                   <RoundButton
-                          text="Button"
+                          text="Xem chi tiet"
                           type="primary"
                           shape="rectangle"
-                          backgroundColors={['#4DC7A4', '#66D37A']}
+                          backgroundColors={['#8C4648', '#FF0000']}
                           gradientStart={{ x: 0.5, y: 1 }}
                           gradientEnd={{ x: 1, y: 1 }}                          
-                          onPress={() => {}}              
+                          onPress={() => this.gotoPage(ChiTietBenh, 'CHI TIẾT', 'Parkinson la mot benh rung chan tay khong kiem soat')}         
                         >
                   </RoundButton>
                 </View>   

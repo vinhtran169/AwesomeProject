@@ -143,7 +143,7 @@ export default class ChanBenh extends Component {
                       onPress: this.download,
                     },
                     downloading: {
-                      backgroundColors: ['#6A6AD5', '#6F86D9'],
+                      backgroundColors: ['#FF0000', '#FF0000'],
                       progressBackgroundColor: '#F0F0F0',
                       text: 'Đang chẩn đoán',
                       progress: true,
