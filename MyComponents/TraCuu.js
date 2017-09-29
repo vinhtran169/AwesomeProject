@@ -9,46 +9,98 @@ import ChiTietBenh from './ChiTietBenh';
 
 var styles = require('../styles/main');
 var SQLite = require('react-native-sqlite-storage');
+var listAllData = [];
 
 export default class TraCuu extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.getDS_BENH();
     this.state = {
       loadScreen: false,
       dataSource: []
     }
   }
 
+  // Call before render
+  componentWillMount(){
+    this.getData_DANHSACHBENH();
+  }
+
   // Get data listview
-  getDS_BENH(searchText = ''){
+  getData_DANHSACHBENH(){
     try {
-      var sql = 'select * from DANHSACHBENH where TENBENH like ?';
-      var params = ['%' + searchText + '%'];
+      if (listAllData.length > 0){ 
+        this.reloadScreen(listAllData);
+        return; 
+      }
+
+      var sql = 'select * from DANHSACHBENH';
+      var params = [];
 
       var db = SQLite.openDatabase({name: Globals.dbName},() => {
-        console.log('SUCCESS');
         db.transaction((tx) => {
           tx.executeSql(sql, params, (tx, results) => {
-            var dataList = [];
+            console.log('SUCCESS EXEC');
+
             var len = results.rows.length;
             for (let i = 0; i < len; i++) {
-              dataList[i] = results.rows.item(i);
+              var obj = {};
+              obj.ID_BENH = results.rows.item(i).ID_BENH;
+              obj.TENBENH = results.rows.item(i).TENBENH;
+              obj.MOTACHITIET = results.rows.item(i).MOTACHITIET;
+              obj.HINHANHMOTA = results.rows.item(i).HINHANHMOTA;
+              obj.TENBENH_SEARCH = this.convertString(results.rows.item(i).TENBENH);
+
+              listAllData[i] = obj;
             }
-            console.log('SUCCESS EXEC');
-            this.reloadScreen(dataList);
-          }, (err) => {
-            console.log(err.message);
-          });
+            this.reloadScreen(listAllData);
+
+          }, (err) => { console.log(err.message) });
         });
-      }, (err)=>{console.log(err.message)});
+      }, (err) => { console.log(err.message) });
 
     } catch (err) { }
   }
 
+  // Convert string UTF-8
+  convertString(str){
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+
+    return str;
+  }
+
+  // Search data list
+  searchData(searchText = ''){
+    var listResult = [];
+    searchText = searchText.toLowerCase();
+
+    if(searchText == ''){
+      this.reloadScreen(listAllData);
+    }else{
+      if((/[^\u0000-\u007f]/).test(searchText)){
+        listResult = listAllData.filter((obj) => {
+          return obj.TENBENH.toLowerCase().includes(searchText);
+        });
+        this.reloadScreen(listResult);
+
+      }else{
+        listResult = listAllData.filter((obj) => {
+          return obj.TENBENH_SEARCH.includes(searchText);
+        });
+        this.reloadScreen(listResult);
+      }
+    }
+  }
+
   // Reload data screen
-  reloadScreen(dataList){
+  reloadScreen(data){
     const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId];
     const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`];
 
@@ -59,7 +111,7 @@ export default class TraCuu extends Component {
       getRowData,
     });
 
-    const { dataBlob, sectionIds, rowIds } = this.formatData(dataList);
+    const { dataBlob, sectionIds, rowIds } = this.formatData(data);
 
     this.setState({
       loadScreen: true,
@@ -125,7 +177,7 @@ export default class TraCuu extends Component {
         <TextInput
           style={styles.input}
           placeholder="Tìm kiếm..."
-          onChangeText={(text) => this.getDS_BENH(text)}
+          onChangeText={(text) => this.searchData(text)}
         />
       </View>
     );
@@ -134,22 +186,22 @@ export default class TraCuu extends Component {
   // Render Row
   _renderRow(data){
     return(
-      <TouchableHighlight onPress={() => this.gotoPage(ChiTietBenh, 'CHI TIẾT', data.MOTACHITIET)}>
+      <TouchableHighlight onPress={() => this.gotoPage(ChiTietBenh, 'CHI TIẾT BỆNH', data)}>
         <View style={styles.containerRow}>
-            <Text style={styles.letter}>{data.TENBENH.charAt(0).toUpperCase()}</Text>
-            <Text style={styles.content}>{data.TENBENH}</Text>
+          <Text style={styles.letter}>{data.TENBENH.charAt(0).toUpperCase()}</Text>
+          <Text style={styles.content}>{data.TENBENH}</Text>
         </View>
       </TouchableHighlight>
     );
   }
   
   // Go Screen
-  gotoPage(componentName, screenName, dataSend) {
+  gotoPage(componentName, screenName, data) {
     this.props.navigator.push({
       component: componentName, 
       name: screenName,
       props: {
-        dataSend: dataSend
+        dataSend: data
       }
     });
   }

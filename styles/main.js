@@ -198,7 +198,7 @@ module.exports = StyleSheet.create({
 
   separator: {
     flex: 1,
-    height: StyleSheet.hairlineWidth,
+    height: 1,
     backgroundColor: '#8E8E8E',
   },
 
@@ -231,23 +231,19 @@ module.exports = StyleSheet.create({
 
   containerRow: {
     flex: 1,
-    padding: 12,
+    padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   content: {
-    marginLeft: 12,
+    flex: 9,
     fontSize: 16,
   },
 
   letter: {
-    padding: 10, 
-    margin: 5,
-    color: '#333', 
-    width: 40, 
-    height: 40, 
-    textAlign: 'center',
+    flex: 1,
+    color: '#333',
   }
 
 });
