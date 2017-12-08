@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, Text, TouchableHighlight, ListView, StyleSheet, AppRegistry, TextInput, Image } from 'react-native';
+import { View, Alert, Text, TouchableHighlight, ListView, StyleSheet, AppRegistry, TextInput, Image, WebView } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import Globals from '../globals';
@@ -33,7 +33,10 @@ export default class ChiTietBenh extends Component {
 
         <View style={styles.contentBorder}>
           <View style={styles.contentBackground}>
-            <Text style={styles.contentText}>{propsData.MOTACHITIET}</Text>
+          {/* <WebView scrollEnabled={false}
+                  source={{html:htmlContent}} 
+                   /> */}
+            {/* <Text style={styles.contentText}>{propsData.MOTACHITIET}</Text> */}
           </View>
         </View>
       </View>
