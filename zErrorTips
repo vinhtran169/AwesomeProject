@@ -19,4 +19,5 @@ followed by react-native run-android
 npm install react-native-animated-bar
 npm start --reset-cache
 
+
 ---
